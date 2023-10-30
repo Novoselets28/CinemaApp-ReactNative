@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-const ErrorScreen = () => (
+const TicketsScreen = () => (
     <View>
-        <Text>componentName</Text>
+        <Text>hello</Text>
     </View>
 );
 
-export default ErrorScreen;
+export default TicketsScreen;
