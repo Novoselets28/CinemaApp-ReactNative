@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ErrorScreen from '../screens/TicketsScreen';
 import { View, StyleSheet } from 'react-native';
 import Ionic from 'react-native-vector-icons/Ionicons'
+import TicketsScreen from '../screens/TicketsScreen';
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
@@ -53,6 +54,10 @@ const TabNavigator = () => {
             <Tab.Screen
                 name="Home"
                 component={HomeScreen}
+            />
+            <Tab.Screen
+                name="MyTickets"
+                component={TicketsScreen}
             />
         </Tab.Navigator>
     )
