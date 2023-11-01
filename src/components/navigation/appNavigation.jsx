@@ -1,10 +1,11 @@
 import React from 'react';
 import HomeScreen from '../screens/HomeScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ErrorScreen from '../screens/TicketsScreen';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Ionic from 'react-native-vector-icons/Ionicons'
 import TicketsScreen from '../screens/TicketsScreen';
+import MovieDetailsScreen from '../screens/MovieDetailsScreen';
+
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {

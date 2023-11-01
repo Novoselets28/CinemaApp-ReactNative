@@ -1,26 +1,32 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
 const TicketScreen = ({ route }) => {
-  const { movie } = route.params;
+  const { filmPoster, sessionTime } = route.params;
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
-        Ticket for {movie.Title} 
-      </Text>
-      <Image
-        source={{ uri: movie.Poster }}
-        style={{
-            height: '60%',
-            aspectRatio: 2 / 3,
-            backgroundColor: 'gray',
-            borderRadius: 15,
-            marginRight: 20,
-          }}
-      />
+    <View style={styles.container}>
+      <Image source={{ uri: filmPoster }} style={styles.filmPoster} />
+      <Text style={styles.ticketText}>Ticket for {sessionTime}</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  filmPoster: {
+    width: 200,
+    height: 300,
+    marginBottom: 20,
+  },
+  ticketText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
 
 export default TicketScreen;

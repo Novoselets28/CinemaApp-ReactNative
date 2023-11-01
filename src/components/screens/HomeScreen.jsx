@@ -1,11 +1,13 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { FlatList, Text, View, Image, StyleSheet, TouchableOpacity, TextInput, Button, ImageBackground } from 'react-native';
+import { FlatList, Text, View, StyleSheet, TouchableOpacity, TextInput, Image } from 'react-native';
 
 const HomeScreen = () => {
   const [movies, setMovies] = useState([]);
   const [availableDates, setAvailableDates] = useState({});
   const [searchText, setSearchText] = useState('');
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     fetch('https://demo7324815.mockable.io/available/films')
@@ -68,11 +70,12 @@ const HomeScreen = () => {
   const renderMovieItem = (item) => {
   
     return (
-      <TouchableOpacity onPress={() => handleMoviePress(item)}>
+      <TouchableOpacity onPress={() => {
+        navigation.navigate('MovieDetailsScreen', {item})
+      }}>
         <View style={styles.movieContainer}>
-          <ImageBackground source={{ uri: item.Poster }} resizeMode="cover" style={styles.movieImage}>
-            <Text style={styles.movieTitle}>{item.Title}</Text>
-          </ImageBackground>
+          <Image source={{ uri: item.Poster }} resizeMode="cover" style={styles.movieImage} />
+          <Text style={styles.movieTitle}>{item.Title}</Text>
           <View style={styles.movieDetails}>
             <View style={styles.dateContainer}>
               {availableDates[item.id]?.map((date, index) => (
@@ -127,7 +130,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     height: 200,
-    marginBottom: 4,
+    marginBottom: 4,    
   },
   movieDetails: {
     display: 'flex',
@@ -138,7 +141,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingBottom: 10,
     paddingLeft: 10,
-    color: '#fff',
+    color: '#000',
   },
   dateContainer: {
     flexDirection: 'row',
