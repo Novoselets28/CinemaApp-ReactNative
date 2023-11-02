@@ -1,6 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, View, StyleSheet, TouchableOpacity, TextInput, Image } from 'react-native';
+import { sizes } from '../../constants/theme';
+
+const CARD_WIDTH = sizes.width - 20;
+const CARD_HEIGHT = 200;
 
 const HomeScreen = () => {
   const [movies, setMovies] = useState([]);
@@ -68,29 +72,52 @@ const HomeScreen = () => {
   };
 
   const renderMovieItem = (item) => {
-  
     return (
-      <TouchableOpacity onPress={() => {
-        navigation.navigate('MovieDetailsScreen', {item})
-      }}>
+      <TouchableOpacity
+        onPress={() => {
+          const selectedDate = availableDates[item.id]
+            ? formatDateToDayOfWeek(availableDates[item.id][0])
+            : null;
+  
+          navigation.navigate('MovieDetailsScreen', {
+            item,
+            selectedDate,
+            filmTitle: item.Title,
+            isDate: false,
+          });
+        }}
+      >
         <View style={styles.movieContainer}>
-          <Image source={{ uri: item.Poster }} resizeMode="cover" style={styles.movieImage} />
+          <View style={styles.imageContainer}>
+            <Image source={{ uri: item.Poster }} style={styles.movieImage} />
+          </View>
           <Text style={styles.movieTitle}>{item.Title}</Text>
           <View style={styles.movieDetails}>
             <View style={styles.dateContainer}>
               {availableDates[item.id]?.map((date, index) => (
-                <View key={index} style={styles.dateBox}>
-                  <Text style={styles.dateText}>
-                    {formatDateToDayOfWeek(date)}
-                  </Text>
-                </View>
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => {
+                    navigation.navigate('MovieDetailsScreen', {
+                      item,
+                      selectedDate: formatDateToDayOfWeek(date),
+                      isDate: true,
+                    });
+                  }}
+                >
+                  <View style={styles.dateBox}>
+                    <Text style={styles.dateText}>
+                      {formatDateToDayOfWeek(date)}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
               ))}
             </View>
           </View>
         </View>
       </TouchableOpacity>
     );
-  };
+  };  
 
   return (
     <View style={styles.container}>
@@ -112,7 +139,8 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
+    height: CARD_HEIGHT - 100,
+    flex: 1,
     padding: 16,
     backgroundColor: 'white',
   },
@@ -122,30 +150,36 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   movieContainer: {
-    flex: 1,
-    flexDirection: 'column',
     marginBottom: 16,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  imageContainer: {
+    width: CARD_WIDTH,
+    height: CARD_HEIGHT,
+    borderRadius: 10,
+    overflow: 'hidden',
   },
   movieImage: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    height: 200,
-    marginBottom: 4,    
-  },
-  movieDetails: {
-    display: 'flex',
-    marginLeft: 10,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
   movieTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    paddingBottom: 10,
-    paddingLeft: 10,
+    padding: 10,
     color: '#000',
   },
   dateContainer: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    padding: 10,
   },
   dateBox: {
     backgroundColor: 'blue',
@@ -162,8 +196,8 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
-    marginBottom: 8,
-    paddingLeft: 8,
+    marginBottom: 16,
+    paddingLeft: 16,
     borderRadius: 10,
   },
 });

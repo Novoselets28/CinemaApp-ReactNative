@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
 const TicketScreen = ({ route }) => {
-  const { filmPoster, sessionTime } = route.params;
+  const { filmPoster, sessionTime, selectedDate } = route.params;
 
   return (
     <View style={styles.container}>
       <Image source={{ uri: filmPoster }} style={styles.filmPoster} />
-      <Text style={styles.ticketText}>Ticket for {sessionTime}</Text>
+      <Text style={styles.ticketText}>Ticket for {sessionTime} on {selectedDate}</Text>
     </View>
   );
 };
