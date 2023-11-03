@@ -53,7 +53,7 @@ const MovieDetailsScreen = ({ route }) => {
               <Text
                 style={styles.timeText}
                 onPress={() => {
-                  navigation.navigate('MyTickets', {
+                  navigation.navigate('SeatsScreen', {
                     filmPoster: item.Poster,
                     sessionTime: session,
                     selectedDate: selectedDate,
