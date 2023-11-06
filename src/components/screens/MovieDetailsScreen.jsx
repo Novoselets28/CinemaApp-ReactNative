@@ -72,8 +72,9 @@ const MovieDetailsScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 10,
     width: CARD_WIDTH,
-    margin: 10,
+    margin: 10
   },
   imageBox: {
     width: CARD_WIDTH,
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginTop: 10
   },
   timeBox: {
     backgroundColor: 'yellow',

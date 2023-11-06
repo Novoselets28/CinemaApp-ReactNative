@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         flexWrap: 'wrap',
+        justifyContent: 'center'
     },
     seatBox: {
         width: 50, 

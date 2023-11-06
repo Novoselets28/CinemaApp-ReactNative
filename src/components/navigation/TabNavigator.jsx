@@ -1,10 +1,32 @@
 import React from 'react';
 import HomeScreen from '../screens/HomeScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MovieDetailsScreen from '../screens/MovieDetailsScreen';
+import SeatsScreen from '../screens/SeatsScreen';
+import TicketScreen from '../screens/TicketsScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionic from 'react-native-vector-icons/Ionicons';
-import TicketsScreen from '../screens/TicketsScreen';
 
+const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const HomeStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="MovieDetailsScreen" component={MovieDetailsScreen} />
+      <Stack.Screen name="SeatsScreen" component={SeatsScreen} />
+    </Stack.Navigator>
+  );
+};
+
+const MyTicketsStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="MyTicket" component={TicketScreen} />
+    </Stack.Navigator>
+  );
+};
 
 const TabNavigator = () => {
   return (
@@ -19,11 +41,14 @@ const TabNavigator = () => {
           position: 'absolute',
           borderTopColor: 'transparent',
           elevation: 0,
-          height: 54,
+          height: 60,
           overflow: 'hidden',
         },
         tabBarIcon: ({ focused, color }) => {
           let iconName;
+          let iconSize = 22;
+          let marginBottom = 4;
+
           if (route.name === 'Home') {
             iconName = focused ? 'home-sharp' : 'home-outline';
             color = focused ? '#ffffff' : '#ffffff40';
@@ -31,33 +56,20 @@ const TabNavigator = () => {
             iconName = focused ? 'film' : 'film-outline';
             color = focused ? '#ffffff' : '#ffffff40';
           }
+
           return (
-            <>
-              <Ionic
-                name={iconName}
-                style={{ marginBottom: 4 }}
-                size={22}
-                color={color}
-              />
-              <Ionic
-                name="ellipse"
-                style={{ display: focused ? 'flex' : 'none' }}
-                size={4}
-                color={color === '#ffffff' ? color : 'transparent'}
-              />
-            </>
+            <Ionic
+              name={iconName}
+              style={{ marginBottom, fontSize: iconSize, color }}
+            />
           );
         },
       })}
     >
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-      />
-      <Tab.Screen
-        name="MyTickets"
-        component={TicketsScreen}
-      />
+      <Tab.Screen name="Home" component={HomeStack} />
+      {/* <Tab.Screen name="MovieDetailsScreen" component={MovieDetailsScreen} /> */}
+      <Tab.Screen name="TicketScreen" component={TicketScreen} />
+      <Tab.Screen name="MyTickets" component={MyTicketsStack} />
     </Tab.Navigator>
   );
 };

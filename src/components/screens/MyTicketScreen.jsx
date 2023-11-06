@@ -1,12 +1,9 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-const TicketScreen = () => {
+const MyTicketScreen = () => {
   const [ticketData, setTicketData] = useState(null);
-  
 
   const fetchTicket = async () => {
     try {
@@ -58,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TicketScreen;
+export default MyTicketScreen;
