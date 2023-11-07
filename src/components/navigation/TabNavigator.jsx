@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MovieDetailsScreen from '../screens/MovieDetailsScreen';
 import SeatsScreen from '../screens/SeatsScreen';
 import TicketScreen from '../screens/TicketsScreen';
+import MyTicketScreen from '../screens/MyTicketScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionic from 'react-native-vector-icons/Ionicons';
 
@@ -16,17 +17,16 @@ const HomeStack = () => {
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="MovieDetailsScreen" component={MovieDetailsScreen} />
       <Stack.Screen name="SeatsScreen" component={SeatsScreen} />
+      <Stack.Screen name="TicketScreen" component={TicketScreen} />
     </Stack.Navigator>
-  );
-};
+)};
 
-const MyTicketsStack = () => {
+const MyTicketStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="MyTicket" component={TicketScreen} />
+      <Stack.Screen name="MyTicket" component={MyTicketScreen} />
     </Stack.Navigator>
-  );
-};
+)};
 
 const TabNavigator = () => {
   return (
@@ -67,9 +67,7 @@ const TabNavigator = () => {
       })}
     >
       <Tab.Screen name="Home" component={HomeStack} />
-      {/* <Tab.Screen name="MovieDetailsScreen" component={MovieDetailsScreen} /> */}
-      <Tab.Screen name="TicketScreen" component={TicketScreen} />
-      <Tab.Screen name="MyTickets" component={MyTicketsStack} />
+      <Tab.Screen name="MyTickets" component={MyTicketStack} />
     </Tab.Navigator>
   );
 };

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
-const MyTicketScreen = () => {
+const MyTicketScreen = ({ route }) => {
   const [ticketData, setTicketData] = useState(null);
 
   const fetchTicket = async () => {
@@ -15,11 +16,17 @@ const MyTicketScreen = () => {
     } catch (error) {
       console.error('Error fetching ticket:', error);
     }
-  };
+  }
+
+  const refreshTicketData = useCallback(() => {
+    fetchTicket();
+  }, []);
 
   useEffect(() => {
     fetchTicket();
   }, []);
+
+  useFocusEffect(refreshTicketData);
 
   return (
     <View style={styles.container}>

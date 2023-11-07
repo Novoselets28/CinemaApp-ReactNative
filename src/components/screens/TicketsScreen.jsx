@@ -1,41 +1,41 @@
+import React, { useState } from 'react';
+import { View, Text, Image, StyleSheet, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+const TicketScreen = ({ route }) => {
+  const { filmPoster, sessionTime, selectedDate, seat } = route.params || {};
+  const navigation = useNavigation();
 
-const TicketScreen = () => {
-  const [ticketData, setTicketData] = useState(null);
-  
+  const [ticketSaved, setTicketSaved] = useState(false);
 
-  const fetchTicket = async () => {
+  const saveTicket = async () => {
     try {
-      const storedTicket = await AsyncStorage.getItem('ticket');
-      if (storedTicket) {
-        const parsedTicket = JSON.parse(storedTicket);
-        setTicketData(parsedTicket);
-      }
+      const newTicketData = {
+        filmPoster,
+        sessionTime,
+        selectedDate,
+        seat,
+      };
+
+      await AsyncStorage.setItem('ticket', JSON.stringify(newTicketData));
+      setTicketSaved(true);
     } catch (error) {
-      console.error('Error fetching ticket:', error);
+      console.error('Error saving ticket:', error);
     }
   };
 
-  useEffect(() => {
-    fetchTicket();
-  }, []);
-
   return (
     <View style={styles.container}>
-      {ticketData ? (
-        <>
-          <Image source={{ uri: ticketData.filmPoster }} style={styles.filmPoster} />
-          <Text style={styles.ticketText}>
-            Ticket for {ticketData.sessionTime} on {ticketData.selectedDate}
-          </Text>
-          <Text>Your seat is {ticketData.seat}</Text>
-        </>
+      <Image source={{ uri: filmPoster }} style={styles.filmPoster} />
+      <Text style={styles.ticketText}>
+        Ticket for {sessionTime} on {selectedDate}
+      </Text>
+      <Text>Your seat is {seat}</Text>
+      {ticketSaved ? (
+        <Button title="Home" onPress={() => navigation.navigate('HomeScreen')} />
       ) : (
-        <Text>No ticket data available</Text>
+        <Button title="Save Ticket" onPress={saveTicket} />
       )}
     </View>
   );
