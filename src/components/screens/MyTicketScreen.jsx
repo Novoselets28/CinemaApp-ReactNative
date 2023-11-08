@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 
-const MyTicketScreen = ({ route }) => {
+const MyTicketScreen = () => {
   const [ticketData, setTicketData] = useState(null);
 
   const fetchTicket = async () => {

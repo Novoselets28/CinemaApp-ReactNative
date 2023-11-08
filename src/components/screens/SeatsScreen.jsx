@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
+import { COLORS } from '../../constants/theme';
 
 const SeatsScreen = ({ route }) => {
     const [seats, setSeats] = useState([]);
@@ -42,7 +43,9 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor: COLORS.darkBlue,
+        height: '100%'
     },
     seatBox: {
         width: 50, 
@@ -50,7 +53,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'gray',
-        margin: 5,
+        margin: 20,
     },
 });
 

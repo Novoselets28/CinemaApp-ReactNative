@@ -11,3 +11,12 @@ export const sizes = {
     body: 14,
     radius: 16,
   };
+
+export const COLORS = {
+  purple: '#D814FF',
+  black: '#000000',
+  liniar: '#017373',
+  blue: '#044E7D',
+  green: '#029191',
+  darkBlue: '#025273'
+}

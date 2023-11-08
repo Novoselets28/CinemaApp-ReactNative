@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { Image, Text, View, StyleSheet } from 'react-native';
-import { sizes } from '../../constants/theme';
+import { COLORS, sizes } from '../../constants/theme';
 
 const CARD_WIDTH = sizes.width - 20;
 const CARD_HEIGHT = 200;
@@ -74,7 +74,9 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 10,
     width: CARD_WIDTH,
-    margin: 10
+    height: '100%',
+    margin: 10,
+    backgroundColor: COLORS.liniar
   },
   imageBox: {
     width: CARD_WIDTH,
@@ -107,13 +109,13 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   timeBox: {
-    backgroundColor: 'yellow',
+    backgroundColor: COLORS.blue,
     padding: 8,
     margin: 4,
     borderRadius: 4,
   },
   timeText: {
-    color: 'black',
+    color: 'white',
   },
   filmDetailsContainer: {
     marginTop: 20,

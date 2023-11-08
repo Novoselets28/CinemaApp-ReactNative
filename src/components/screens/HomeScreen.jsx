@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, View, StyleSheet, TouchableOpacity, TextInput, Image } from 'react-native';
-import { sizes } from '../../constants/theme';
+import { COLORS, sizes } from '../../constants/theme';
 
-const CARD_WIDTH = sizes.width - 20;
+const CARD_WIDTH = sizes.width - 32;
 const CARD_HEIGHT = 200;
 
 const HomeScreen = () => {
@@ -139,10 +139,11 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: CARD_HEIGHT - 100,
-    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
     padding: 16,
-    backgroundColor: 'white',
+    backgroundColor: COLORS.liniar,
     marginBottom: 20,
   },
   title: {
@@ -152,7 +153,7 @@ const styles = StyleSheet.create({
   },
   movieContainer: {
     marginBottom: 16,
-    backgroundColor: 'white',
+    backgroundColor: COLORS.liniar,
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -175,7 +176,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     padding: 10,
-    color: '#000',
+    color: '#fff',
   },
   dateContainer: {
     flexDirection: 'row',
@@ -183,7 +184,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   dateBox: {
-    backgroundColor: 'blue',
+    backgroundColor: COLORS.blue,
     padding: 4,
     borderRadius: 4,
     marginRight: 4,
@@ -195,6 +196,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     height: 40,
+    backgroundColor: COLORS.green,
     borderColor: 'gray',
     borderWidth: 1,
     marginBottom: 16,

@@ -36,12 +36,12 @@ const TabNavigator = () => {
         headerShown: false,
         tabBarStyle: {
           backgroundColor: '#1A1A23',
-          borderTopEndRadius: 10,
-          borderTopStartRadius: 10,
-          position: 'absolute',
+          // borderTopEndRadius: 10,
+          // borderTopStartRadius: 10,
+          // position: 'absolute',
           borderTopColor: 'transparent',
           elevation: 0,
-          height: 60,
+          height: 70,
           overflow: 'hidden',
         },
         tabBarIcon: ({ focused, color }) => {
